@@ -1,65 +1,27 @@
-
-import { Heart, Link, Search, ShoppingBag, User } from "lucide-react";
-import Image from "next/image";
-
-export default function Navbar () {
-    return (
+export default function Footer() {
+    return(
         <>
-            <nav className="w-full py-9 px-52 bg-white text-black">
+            <footer className="bg-red-500 container relative flex justify-center mt-[72px] h-screen ">
+                <div className="">
 
-                    <div className="flex justify-between">
+                    {/* Upper-Footer  */}
+                    <div>
 
-                        {/* LEFT  */}
-                        <div className="flex flex-col text-xs text-gray-400">
-                            <span>SHIPPING TO</span>
-                            <Link href="#" className="font-bold underline underline-offset-2 text-black text-sm">
-                            INDIA
-                            </Link>
-                        </div>
+                        {/* LEFT UPPER Footer  */}
+                        <div>LEFT</div>
 
-                        {/* CENTER  */}
-                        <div className="text-xl">
-                            <Link href="/">
-                                <Image
-                                src="/mikenwidelogo.png" // path inside /public
-                                alt="Mike & Wide Logo"
-                                width={150} // adjust width as per your figma
-                                height={50}  // adjust height as per your figma
-                                priority // important for navbar logos (loads faster)
-                                className=""
-                                />
-                            </Link>
-                        </div>
+                        {/* RIGHT UPPER FOOTER  */}
+                        <div>RIGHT</div>
+                    </div>
+                    
 
-                        {/* RIGHT  */}
-                        <div className="flex items-center gap-6 text-gray-800">
-                            <Link href="/search" aria-label="Search">
-                                <Search size={20} />
-                                </Link>
-                                <Link href="/account" aria-label="Account">
-                                <User size={20} />
-                                </Link>
-                                <Link href="/wishlist" aria-label="Wishlist">
-                                <Heart size={20} />
-                                </Link>
-                                <Link href="/cart" aria-label="Cart" className="flex items-center gap-1">
-                                <ShoppingBag size={20} />
-                                <span className="text-sm">0</span>
-                            </Link>
-                        </div>
-
+                    {/* Lower-Footer  */}
+                    <div>
+                        
                     </div>
 
-            </nav>
+                </div>
+            </footer>
         </>
     )
 }
-
-
-
-
-
-
-
-
-// asdfghjkl--------------------------------------------------

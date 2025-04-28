@@ -1,3 +1,5 @@
+import Footer from "@/components/Footer";
+import ProductCard from "@/components/ProductCard";
 import Banner1 from "@/components/ui/Banner";
 import Image from "next/image";
 
@@ -8,6 +10,11 @@ export default function Home() {
         <Banner1/>
         </div> */}
         <Banner1 />
+        <div className="my-12">
+
+          <ProductCard />
+        </div>
+        <Footer />
 
 
       {/* TODO: 
