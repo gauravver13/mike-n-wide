@@ -44,7 +44,7 @@ export default function Navbar() {
         </div>
 
         {/* RIGHT */}
-        <div className="flex items-center gap-6 text-gray-800">
+        <div className="flex items-center gap-6 text-black ">
           {/* Search Icon - Always visible */}
           <Link href="/search" aria-label="Search" className="md:hidden">
             <Search size={24} />
@@ -52,16 +52,16 @@ export default function Navbar() {
 
           {/* Desktop other icons */}
           <div className="hidden md:flex items-center gap-6">
-            <Link href="/search" aria-label="Search">
+            <Link href="/search" aria-label="Search" className="opacity-60 hover:opacity-80 active:opacity-100">
               <Search size={20} />
             </Link>
-            <Link href="/account" aria-label="Account">
+            <Link href="/account" aria-label="Account" className="opacity-60 hover:opacity-80 active:opacity-100">
               <User size={20} />
             </Link>
-            <Link href="/wishlist" aria-label="Wishlist">
+            <Link href="/wishlist" aria-label="Wishlist" className="opacity-60 hover:opacity-80 active:opacity-100">
               <Heart size={20} />
             </Link>
-            <Link href="/cart" aria-label="Cart" className="flex items-center gap-1">
+            <Link href="/cart" aria-label="Cart" className="flex items-center gap-1 opacity-60 hover:opacity-80 active:opacity-100">
               <ShoppingBag size={20} />
               <span className="text-sm">0</span>
             </Link>

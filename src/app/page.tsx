@@ -1,4 +1,5 @@
 import Footer from "@/components/Footer";
+import HeroSection from "@/components/HeroSection";
 import ProductCard from "@/components/ProductCard";
 import ProductSlider from "@/components/ProductSection";
 import ProductSection from "@/components/ProductSection";
@@ -13,7 +14,8 @@ export default function Home() {
         </div> */}
         <Banner1 />
         <ProductSlider />
-
+        <HeroSection />
+        
         <div className="bg-color-primary w-full">
           HELLO
         </div>
