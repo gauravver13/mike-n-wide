@@ -31,7 +31,7 @@ export default function HeroSection() {
       </div>
 
       {/* ✅ Desktop View: Original Layout */}
-      <div className="hidden md:flex text-center px-32 my-16">
+      <div className="hidden md:flex text-center px-36 my-16">
         {/* Left Section */}
         <div>
           <div className="relative w-96 h-80">

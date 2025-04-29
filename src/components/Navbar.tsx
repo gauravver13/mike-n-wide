@@ -9,7 +9,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="w-full bg-white text-black py-6 px-4 lg:px-52 shadow-sm relative">
+    <nav className="w-full bg-white text-black py-6 px-4 lg:px-52 relative">
       <div className="flex justify-between items-center">
 
         {/* LEFT - Hamburger on mobile */}
@@ -27,6 +27,7 @@ export default function Navbar() {
               INDIA
             </Link>
           </div>
+          
         </div>
 
         {/* CENTER - Logo */}
