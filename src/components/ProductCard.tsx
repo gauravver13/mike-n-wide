@@ -3,8 +3,8 @@ import Image from "next/image";
 export default function ProductCard() {
     return (
         <>
-            <div className=" border-2 border-amber-500 w-72 px-7 py-6 flex flex-col justify-center items-center h-[555px] m-32 relative">
-                    <div className="border border-amber-500 mt-28">
+            <div className="w-72 py-6 flex flex-col justify-center items-center h-[555px] relative">
+                    <div className=" mt-28">
                         <Image
                         src="/product0.png"
                         alt="Art Image"
@@ -16,15 +16,18 @@ export default function ProductCard() {
                         />
                     </div>
 
-                    <div className="bg-red-400 w-full flex flex-col items-center mt-8">
+                    <div className="w-full flex flex-col items-center mt-8">
                         <div className="flex px-1">
-                            <div><button className="px-4 py-2.5 rounded-md bg-red-950"></button></div>
-                            <div><button>h</button></div>
-                            <div><button>h</button></div>
+                            <div><button className="px-4 py-2.5 rounded-lg bg-black "></button></div>
+                            <div><button className="px-4 py-2.5 rounded-lg mx-2 bg-[#67686D]"></button></div>
+                            <div><button className="px-4 py-2.5 rounded-lg bg-[#743A2D]"></button></div>
                         </div>
 
-                        <div>product-name</div>
-                        <div>prdocut cost</div>
+                        <div className="mt-10">
+                            <div className="font-bold text-black mb-2">PRODUCT NAME</div>
+                            <div className="text-black text-center font-medium opacity-70">$ 56</div>
+
+                        </div>
                     </div>
             </div>
         </>

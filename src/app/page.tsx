@@ -1,5 +1,7 @@
 import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
+import ProductSlider from "@/components/ProductSection";
+import ProductSection from "@/components/ProductSection";
 import Banner1 from "@/components/ui/Banner";
 import Image from "next/image";
 
@@ -10,9 +12,10 @@ export default function Home() {
         <Banner1/>
         </div> */}
         <Banner1 />
-        <div className="my-12">
+        <ProductSlider />
 
-          <ProductCard />
+        <div className="bg-color-primary w-full">
+          HELLO
         </div>
         <Footer />
 
