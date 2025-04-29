@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function ProductCard() {
     return (
         <>
-            <div className="w-72 py-6 flex flex-col justify-center items-center h-[555px] relative">
+            <div className="w-72 py-6 pb-36 border-[1px] border-[#F2F2F2] flex flex-col justify-center items-center h-[555px] relative">
                     <div className=" mt-28">
                         <Image
                         src="/product0.png"
