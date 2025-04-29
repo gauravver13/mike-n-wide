@@ -72,7 +72,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="absolute top-full left-0 w-full bg-white shadow-md flex flex-col py-4 space-y-4 px-6 md:hidden z-50">
+        <div className="absolute top-full left-0 w-full bg-white flex flex-col py-4 space-y-4 px-6 md:hidden z-50">
           <Link href="/account" className="flex items-center gap-2 text-gray-800" onClick={() => setIsOpen(false)}>
             <User size={20} /> Account
           </Link>

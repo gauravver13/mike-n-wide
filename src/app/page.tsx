@@ -12,10 +12,10 @@ export default function Home() {
       {/* <div className="h-screen w-full text-7xl bg-white text-black justify-center items-center flex ">MIKE N WIDE
         <Banner1/>
         </div> */}
+        <HeroSection />
         <Banner1 />
         <ProductSlider />
-        <HeroSection />
-        
+
         <div className="bg-color-primary w-full">
           HELLO
         </div>
