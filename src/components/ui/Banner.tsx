@@ -4,9 +4,9 @@ import Button from "./Button";
 export default function Banner1() {
     return (
         <div className="mb-0 container">
-            <section className="relative w-full h-screen flex flex-col lg:flex-row">
+            <section className="relative w-full h-screen flex flex-col md:flex-row">
                 {/* Left Image - Full width on mobile */}
-                <div className="relative w-full lg:w-1/2 h-full">
+                <div className="relative w-full md:w-1/2 h-full">
                     <Image
                         src="/model0.png"
                         alt="Model Image"
@@ -17,19 +17,19 @@ export default function Banner1() {
                 </div>
 
                 {/* Right Image - Hidden on mobile */}
-                <div className="relative hidden lg:block lg:w-1/2 h-full">
+                <div className="relative hidden md:block md:w-1/2 h-full">
                     <Image
                         src="/art0.png"
                         alt="Art Image"
                         fill
-                        className="object-cover"
+                        className="md:object-contain lg:object-cover"
                         priority
                     />
                 </div>
             </section>
 
             {/* Text and Button Section */}
-            <div className="relative w-full flex flex-col items-start lg:items-center justify-center px-4 -mt-64 lg:-mt-24  z-10">
+            <div className="relative w-full flex flex-col items-start md:items-center justify-center px-4 -mt-64 md:-mt-52 lg:-mt-24 z-10">
 
                 <div className="text-left lg:text-center leading-normal flex flex-wrap sm:-mt-12 sm:font-bold text-xl lg:text-4xl font-semibold tracking-normal">
                     BLEND OF ITALIAN & MODERN ROCO
