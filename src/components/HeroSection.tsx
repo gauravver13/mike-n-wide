@@ -5,7 +5,7 @@ export default function HeroSection() {
   return (
     <>
       {/* ✅ Mobile View: Horizontal Scroll */}
-      <div className="md:hidden overflow-x-auto snap-x snap-mandatory flex gap-4 px-4 py-8 container">
+      <div className="lg:hidden overflow-x-auto snap-x snap-mandatory flex gap-4 px-4 py-8 container">
         {[
           { src: "/model3.png", alt: "Model 3", w: "w-[328px]", h: "h-[384px]" },
           { src: "/bow0.png", alt: "Bow 0", w: "w-[328px]", h: "h-[384px]" },
@@ -31,7 +31,7 @@ export default function HeroSection() {
       </div>
 
       {/* ✅ Desktop View: Original Layout */}
-      <div className="hidden md:flex text-center px-36 my-16">
+      <div className="hidden md:hidden lg:flex text-center lg:justify-center  my-16">
         {/* Left Section */}
         <div>
           <div className="relative w-96 h-80">
@@ -41,9 +41,9 @@ export default function HeroSection() {
                 alt="Model 3"
                 fill
                 priority
-                className="object-contain"
+                className="object-cover"
               />
-              <div className=" absolute bg-white w-12 h-12 rounded-md bottom-0 right-0 m-5">
+              <div className="absolute bg-white w-12 h-12 rounded-md bottom-0 right-0 m-5">
                 <Image
                     src="/path-right.png"
                     alt="Model 3"
@@ -108,6 +108,7 @@ export default function HeroSection() {
             </Link>
           </div>
         </div>
+
       </div>
     </>
   );
