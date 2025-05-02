@@ -4,12 +4,14 @@ import { Heart, Search, ShoppingBag, User, Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import BottomNavbar from "./ui/BottomNav";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <nav className="w-full bg-white text-black py-6 px-4 lg:px-52 relative">
+
       <div className="flex justify-between items-center">
 
         {/* LEFT - Hamburger on mobile */}
@@ -71,6 +73,9 @@ export default function Navbar() {
           </div>
         </div>
 
+      </div>
+      <div className="hidden lg:block">
+          <BottomNavbar />
       </div>
 
       {/* Mobile Menu */}
