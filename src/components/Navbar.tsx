@@ -14,14 +14,14 @@ export default function Navbar() {
 
         {/* LEFT - Hamburger on mobile */}
         <div className="flex items-center">
-          <div className="flex md:hidden">
+          <div className="flex lg:hidden">
             <button onClick={() => setIsOpen(!isOpen)} aria-label="Toggle Menu">
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
 
           {/* LEFT - Shipping Info (Desktop only) */}
-          <div className="hidden md:flex flex-col text-xs text-gray-400">
+          <div className="hidden lg:flex flex-col text-xs text-gray-400">
             <span>SHIPPING TO</span>
             <Link href="#" className="font-bold underline underline-offset-2 text-black text-sm">
               INDIA
@@ -47,6 +47,8 @@ export default function Navbar() {
         {/* RIGHT */}
         <div className="flex items-center gap-6 text-black ">
           {/* Search Icon - Always visible */}
+
+          {/* // TODO: change this to consistent search bar  */}
           <Link href="/search" aria-label="Search" className="md:hidden">
             <Search size={24} />
           </Link>
