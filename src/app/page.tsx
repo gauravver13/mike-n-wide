@@ -15,10 +15,6 @@ export default function Home() {
         <HeroSection />
         <Banner1 />
         <ProductSlider />
-
-        <div className="bg-color-primary w-full">
-          HELLO
-        </div>
         <Footer />
 
 
