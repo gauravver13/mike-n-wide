@@ -1,0 +1,95 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+// One user can have many orders.
+model User {
+  id                Int       @id @default(autoincrement())
+  email             String    @unique
+  name              String
+  password          String?   // Nullable because of Google OAuth
+  image             String?
+  address           String?   // this can be multiple-- needs to discuss!
+  phone             String?
+  provider          String?   // "credentials" or "google"
+  orders            Order[]
+  cart              Cart?
+  createdAt         DateTime  @default(now())
+}
+
+
+// Many to one with category.
+// Indirectly related to order-item : No worries, I also needs to digest. its like every orderItem belogs to which and howMuch product sold. just for the the briefing and better understanding, but can't remove it
+model Product {
+  id                Int       @id @default(autoincrement())
+  name              String
+  slug              String    @unique
+  description       String
+  price             Float
+  imageUrl          String
+  categoryId        Int
+  stock             Int       @default(10)
+  orderItems        OrderItem[]
+  category          Category  @relation(fields: [categoryId], references: [id])
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+// One-to-Many with Product
+model Category {
+  id                Int       @id @default(autoincrement())
+  name              String    @unique
+  description       String?
+  products          Product[]
+}
+
+// Many-to-One with users
+// One-to-Many with OrderItem
+model Order {
+  id                Int         @id @default(autoincrement())
+  userId            Int
+  user              User        @relation(fields: [userId], references: [id])
+  items             OrderItem[]
+  totalAmount       Float
+  shippingAddress   String
+  orderStatus       String      @default("pending") // pending, paid, shipped, delivered
+  razorpayOrderId   String?
+  paymentStatus     String      @default("Pending")
+  createdAt         DateTime    @default(now())
+  updatedAt         DateTime    @updatedAt
+}
+
+// M-to-1 with Order
+// M-to-1 with Product
+model OrderItem {
+  id                Int       @id @default(autoincrement())
+  orderId           Int
+  productId         Int
+  quantity          Int
+  price             Float
+  order             Order     @relation(fields: [orderId], references: [id])
+  product           Product  @relation(fields: [productId], references: [id])
+}
+
+model Cart {
+  id                Int       @id @default(autoincrement())
+  userId            Int       @unique
+  items             Json
+  totalAmount       Float
+  user              User      @relation(fields: [userId], references: [id])
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+}
