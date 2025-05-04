@@ -3,7 +3,7 @@ import Button from "./Button";
 
 export default function Banner1() {
     return (
-        <div className="mb-0 w-full">
+        <div className="m-0 w-full">
             <section className="relative w-full h-screen flex flex-col md:flex-row">
                 {/* Left Image - Full width on mobile */}
                 <div className="relative w-full md:w-1/2 h-full">

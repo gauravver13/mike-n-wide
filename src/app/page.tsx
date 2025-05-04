@@ -5,6 +5,7 @@ import ProductSlider from "@/components/ProductSection";
 import ProductSection from "@/components/ProductSection";
 import Banner from "@/components/ui/Banner";
 import Banner1 from "@/components/ui/Banner1";
+import ShopbyColor from "@/components/ui/ShopbyColor";
 import Image from "next/image";
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
         <Banner />
         <ProductSlider />
         <Banner1 />
+        <ShopbyColor />
         <Footer />
 
 
