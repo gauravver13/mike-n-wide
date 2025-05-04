@@ -4,7 +4,7 @@ export default function ProductSlider() {
     return (
         <div className="container my-40">
             {/* Desktop View: Fixed 4 cards */}
-            <div className="hidden lg:flex justify-evenly">
+            <div className="hidden lg:flex justify-between">
                 {Array.from({ length: 4 }).map((_, index) => (
                     <div key={index} className="w-[23%]">
                         <ProductCard />

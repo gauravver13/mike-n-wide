@@ -38,6 +38,14 @@ model Product {
   slug              String    @unique
   description       String
   price             Float
+  // polishes:
+  size              String
+  color             String
+  // TODO: To be discussed later on
+  material          String   // cotton, silk, linen, etc. 
+  discount          String   
+  // discount          String    @default(0)
+
   imageUrl          String
   categoryId        Int
   stock             Int       @default(10)
@@ -52,6 +60,7 @@ model Category {
   id                Int       @id @default(autoincrement())
   name              String    @unique
   description       String?
+  discount          String?
   products          Product[]
 }
 
@@ -67,6 +76,7 @@ model Order {
   orderStatus       String      @default("pending") // pending, paid, shipped, delivered
   razorpayOrderId   String?
   paymentStatus     String      @default("Pending")
+  discountAmount    Float?
   createdAt         DateTime    @default(now())
   updatedAt         DateTime    @updatedAt
 }
@@ -80,9 +90,14 @@ model OrderItem {
   quantity          Int
   price             Float
   order             Order     @relation(fields: [orderId], references: [id])
+  // product sizre can differ in order items! 
+  // exactly same product will have same order item..
+  returns           Boolean   @default(false)
   product           Product  @relation(fields: [productId], references: [id])
 }
 
+
+// BY FRONTEND AND BACKEND  
 model Cart {
   id                Int       @id @default(autoincrement())
   userId            Int       @unique
@@ -92,3 +107,5 @@ model Cart {
   createdAt         DateTime  @default(now())
   updatedAt         DateTime  @updatedAt
 }
+
+// wishlist: 
