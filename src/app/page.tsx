@@ -3,7 +3,8 @@ import HeroSection from "@/components/HeroSection";
 import ProductCard from "@/components/ProductCard";
 import ProductSlider from "@/components/ProductSection";
 import ProductSection from "@/components/ProductSection";
-import Banner1 from "@/components/ui/Banner";
+import Banner from "@/components/ui/Banner";
+import Banner1 from "@/components/ui/Banner1";
 import Image from "next/image";
 
 export default function Home() {
@@ -13,8 +14,9 @@ export default function Home() {
         <Banner1/>
         </div> */}
         <HeroSection />
-        <Banner1 />
+        <Banner />
         <ProductSlider />
+        <Banner1 />
         <Footer />
 
 
