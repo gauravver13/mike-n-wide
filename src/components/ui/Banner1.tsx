@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function Banner1() {
     return (
         <>
-            <div className=" w-full relative  flex flex-col container h-screen my-16">
+            <div className="w-full relative  flex flex-col container h-screen my-16">
                     <div className=" mb-7">
                         <Image 
                         src={"/banner200.png"}
