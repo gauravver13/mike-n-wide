@@ -42,10 +42,9 @@ model Product {
   size              String
   color             String
   // TODO: To be discussed later on
-  material          String   // cotton, silk, linen, etc. 
-  discount          String   
+  material          String?   // cotton, silk, linen, etc. 
+  discount          Int   
   // discount          String    @default(0)
-
   imageUrl          String
   categoryId        Int
   stock             Int       @default(10)
@@ -76,7 +75,7 @@ model Order {
   orderStatus       String      @default("pending") // pending, paid, shipped, delivered
   razorpayOrderId   String?
   paymentStatus     String      @default("Pending")
-  discountAmount    Float?
+  discountAmount    Int?
   createdAt         DateTime    @default(now())
   updatedAt         DateTime    @updatedAt
 }
@@ -90,7 +89,7 @@ model OrderItem {
   quantity          Int
   price             Float
   order             Order     @relation(fields: [orderId], references: [id])
-  // product sizre can differ in order items! 
+  // product size can differ in order items! 
   // exactly same product will have same order item..
   returns           Boolean   @default(false)
   product           Product  @relation(fields: [productId], references: [id])
