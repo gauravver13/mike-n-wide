@@ -19,7 +19,6 @@ export default function Home() {
         <ProductSlider />
         <Banner1 />
         <ShopbyColor />
-        <Footer />
 
 
       {/* TODO: 
