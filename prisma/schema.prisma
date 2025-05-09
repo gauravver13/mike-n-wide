@@ -26,7 +26,28 @@ model User {
   provider          String?   // "credentials" or "google"
   orders            Order[]
   cart              Cart?
+  accounts          Account[]
+  sessions          Session[]
   createdAt         DateTime  @default(now())
+}
+
+// Address should be in next model
+
+model Account {
+  id                Int        @id @default(autoincrement())
+  userId            Int
+  type              String
+  provider          String
+  providerAccountId String
+  user              User     @relation(fields: [userId], references: [id])
+}
+
+model Session {
+  id           Int            @id @default(autoincrement())
+  sessionToken String         @unique
+  userId       Int
+  expires      DateTime
+  user         User           @relation(fields: [userId], references: [id])
 }
 
 

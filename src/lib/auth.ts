@@ -1,82 +1,60 @@
-import { NextAuthOptions } from 'next-auth'
-import GoogleProvider from 'next-auth/providers/google'
-import CredentialsProvider from 'next-auth/providers/credentials'
-import { PrismaAdapter } from '@next-auth/prisma-adapter'
-import { compare } from "bcryptjs"
-import { prisma } from './db'
-
-if (!process.env.NEXTAUTH_SECRET) {
-  throw new Error('NEXTAUTH_SECRET is not defined')
-}
+import { PrismaAdapter } from "@auth/prisma-adapter";
+import GoogleProvider from "next-auth/providers/google";
+import CredentialsProvider from "next-auth/providers/credentials";
+import prisma from "@/lib/db";
+import bcrypt from "bcrypt";
+import { NextAuthOptions } from "next-auth";
 
 export const authOptions: NextAuthOptions = {
-  adapter: PrismaAdapter(prisma),
+//   adapter: PrismaAdapter(prisma),
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID ?? '',
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? '',
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+
+    async profile(profile) {
+        const user = await prisma.user.upsert({
+          where: { email: profile.email },
+          update: { image: profile.picture, name: profile.name, provider: "google" },
+          create: { email: profile.email, name: profile.name, image: profile.picture, provider: "google" },
+        });
+        return { id: user.id.toString(), email: user.email, name: user.name, image: user.image };
+    }
+
     }),
+
     CredentialsProvider({
-      name: "Credentials",
+      name: "credentials",
       credentials: {
         email: { label: "Email", type: "email" },
-        password: { label: "Password", type: "password" }
+        password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        try {
-          if (!credentials?.email || !credentials?.password) {
-            throw new Error('Missing credentials')
-          }
+        if (!credentials?.email || !credentials?.password) return null;
 
-          const user = await prisma.user.findUnique({
-            where: { email: credentials.email }
-          })
+        const user = await prisma.user.findUnique({ where: { email: credentials.email } });
+        if (!user || !user.password) return null;
 
-          if (!user || !user.password) {
-            throw new Error('User not found')
-          }
+        const isValidPassword = await bcrypt.compare(credentials.password, user.password);
+        if (!isValidPassword) return null;
 
-          const isPasswordValid = await compare(credentials.password, user.password)
-          if (!isPasswordValid) {
-            throw new Error('Invalid password')
-          }
-
-          return {
-            id: user.id.toString(),
-            email: user.email,
-            name: user.name,
-          }
-        } catch (error) {
-          console.error('Authentication error:', error)
-          return null
-        }
-      }
+        return { ...user, id: user.id.toString() };
+      },
     }),
   ],
-  session: {
-    strategy: "jwt",
-    maxAge: 30 * 24 * 60 * 60, // 30 days
-  },
+  session: { strategy: "jwt" },
+  jwt: { secret: process.env.JWT_SECRET! },
   callbacks: {
     async jwt({ token, user }) {
-      if (user) {
-        token.id = user.id
-        token.email = user.email
-      }
-      return token
+      if (user) token.id = user.id;
+      return token;
     },
     async session({ session, token }) {
-      if (session.user) {
-        session.user.id = token.id as string
-        session.user.email = token.email as string
-      }
-      return session
-    }
+      if (token?.id) session.user.id = token.id as string;
+      return session;
+    },
   },
   pages: {
-    signIn: "/signin",
-    error: "/auth/error"
+    signIn: "/login",
   },
-  debug: process.env.NODE_ENV === 'development',
-  secret: process.env.NEXTAUTH_SECRET,
-}
+};
