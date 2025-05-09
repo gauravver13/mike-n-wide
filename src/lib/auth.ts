@@ -44,6 +44,36 @@ export const authOptions: NextAuthOptions = {
       if (token?.id) session.user.id = token.id as string;
       return session;
     },
+    async signIn({ user, account }) {
+      // console.log("signIn callback:: ", user, account);
+      try {
+        // Check if the user already exists in DB
+        let existingUser = await prisma.user.findUnique({
+          where: { email: user.email! },
+        });
+
+        if (!existingUser) {
+          // const password = user.password;
+          // const password = user.password!;
+          const password = "zxcvbnm"
+          const hashedPassword = await bcrypt.hash(password, 10);
+          // Create new user if not found
+          existingUser = await prisma.user.create({
+              data: {
+                email: user.email!,
+                name: user.name!,
+                image: user.image!,
+                password: hashedPassword,
+              }
+          });
+        }
+
+        return true; // Allow login
+      } catch (error) {
+        console.error("Error saving user:", error);
+        return false; // Reject login if DB error
+      }
+    },
   },
   pages: {
     signIn: "/",
