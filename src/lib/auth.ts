@@ -11,16 +11,6 @@ export const authOptions: NextAuthOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-
-    async profile(profile) {
-        const user = await prisma.user.upsert({
-          where: { email: profile.email },
-          update: { image: profile.picture, name: profile.name, provider: "google" },
-          create: { email: profile.email, name: profile.name, image: profile.picture, provider: "google" },
-        });
-        return { id: user.id.toString(), email: user.email, name: user.name, image: user.image };
-    }
-
     }),
 
     CredentialsProvider({
@@ -44,6 +34,7 @@ export const authOptions: NextAuthOptions = {
   ],
   session: { strategy: "jwt" },
   jwt: { secret: process.env.JWT_SECRET! },
+
   callbacks: {
     async jwt({ token, user }) {
       if (user) token.id = user.id;
@@ -55,6 +46,6 @@ export const authOptions: NextAuthOptions = {
     },
   },
   pages: {
-    signIn: "/login",
+    signIn: "/",
   },
 };

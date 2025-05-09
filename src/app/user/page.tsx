@@ -9,9 +9,12 @@ export default async function DashboardPage() {
   }
 
   return (
-    <div>
+    <div className="bg-red-500 w-full">
       <h1>Welcome {user.name}</h1>
       <p>Email: {user.email}</p>
+      <p>Image: {user.image}</p>
+      <p>Address: </p>
+      <p>Any kind of data you want from the user:  {JSON.stringify(user)}</p>
     </div>
   );
 }

@@ -2,6 +2,8 @@
 import { signIn } from "next-auth/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import AuthButton from "@/components/AuthButton";
+import ClientAuth from "@/components/ClientAuth";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -50,7 +52,8 @@ export default function LoginPage() {
         onChange={e => setPassword(e.target.value)}
       />
       <button onClick={handleLogin}>Login</button>
-      <button onClick={handleGoogleLogin}>Login with Google</button>
+      {/* <button onClick={handleGoogleLogin}>Login with Google</button> */}
+      <ClientAuth />
     </div>
   );
 }

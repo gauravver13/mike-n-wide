@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { signIn } from "next-auth/react";
+import ClientAuth from "@/components/ClientAuth";
 
 export default function SignupPage() {
   const router = useRouter();
@@ -20,15 +21,16 @@ export default function SignupPage() {
     setError("");
 
     try {
-      await axios.post("/api/signup", form);
+      await axios.post("/api/user/signup", form);
       // Automatically login after signup
       const res = await signIn("credentials", {
+        name: form.name,
         email: form.email,
         password: form.password,
         redirect: false,
       });
 
-      if (res?.ok) {
+      if (res) {
         // localStorage.setItem("jwtToken", res?.token ?? "");
         console.log("USER SIGNED UPP::")
         router.push("/user");
@@ -43,12 +45,19 @@ export default function SignupPage() {
   };
 
   const handleGoogleSignup = async () => {
-    const res = await signIn("google", { callbackUrl: "/user" });
+    const res = await signIn("google", { callbackUrl: "/" });
+    if(res?.ok) {
+      console.log("RESULT:", res);
+      router.push("/user");
+      
+    } else {
+      console.log("RESult error", res);
+    }
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-red-500 px-4">
-      <div className="w-full max-w-md bg-white shadow-xl rounded-2xl p-6 space-y-6">
+    <div className="flex justify-center items-center min-h-screen bg-red-200 px-4">
+      <div className="w-full max-w-md bg-red-400 shadow-xl rounded-2xl p-6 space-y-6">
         <h1 className="text-2xl font-semibold text-center">Sign up to Mike & Wide</h1>
 
         <div className="space-y-4">
@@ -92,7 +101,7 @@ export default function SignupPage() {
             <hr className="flex-grow border-gray-300" />
           </div>
 
-          <button
+          {/* <button
             onClick={handleGoogleSignup}
             className="w-full border py-2 rounded-lg flex items-center justify-center gap-2 hover:bg-gray-100 transition"
           >
@@ -102,7 +111,8 @@ export default function SignupPage() {
               className="w-5 h-5"
             />
             Continue with Google
-          </button>
+          </button> */}
+          <ClientAuth />
         </div>
 
         <p className="text-center text-sm text-gray-500">
