@@ -1,0 +1,1 @@
+// Get the exact product detail by its id
